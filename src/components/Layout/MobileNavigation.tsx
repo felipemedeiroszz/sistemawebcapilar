@@ -4,7 +4,8 @@ import {
   Calendar,
   BookOpen,
   User,
-  MessageCircle
+  MessageCircle,
+  Bell
 } from 'lucide-react';
 import { useApp } from '../../contexts/AppContext';
 
@@ -12,8 +13,8 @@ const mobileMenuItems = [
   { id: 'dashboard', label: 'Início', icon: Home },
   { id: 'calendar', label: 'Calendário', icon: Calendar },
   { id: 'diary', label: 'Diário', icon: BookOpen },
+  { id: 'alerts', label: 'Alertas', icon: Bell },
   { id: 'chat', label: 'Chat', icon: MessageCircle },
-  { id: 'profile', label: 'Perfil', icon: User },
 ];
 
 export function MobileNavigation() {

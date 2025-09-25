@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Search, Plus, X, Package, Trophy, Sparkles } from 'lucide-react';
+import { Plus, X, Package, Trophy, Sparkles, Bell } from 'lucide-react';
 import { useApp } from '../../contexts/AppContext';
 
 export function Header() {
@@ -23,16 +23,7 @@ export function Header() {
           </div>
         </div>
         
-        <div className="flex-1 max-w-md hidden md:block">
-          <div className="relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
-            <input
-              type="text"
-              placeholder="Buscar..."
-              className="w-full pl-12 pr-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#E9B7C6] focus:border-transparent bg-gray-50"
-            />
-          </div>
-        </div>
+
 
         <div className="flex items-center space-x-4">
           {/* Mobile Menu Button */}
@@ -48,11 +39,11 @@ export function Header() {
               <>
                 {/* Overlay */}
                 <div 
-                  className="fixed inset-0 bg-black/20 z-[9998]"
+                  className="fixed inset-0 bg-black/20 z-[99998]"
                   onClick={() => setShowMobileMenu(false)}
                 />
                 {/* Menu */}
-                <div className="absolute right-0 mt-2 w-64 bg-white rounded-xl shadow-lg border border-gray-200 z-[9999]">
+                <div className="absolute right-0 mt-2 w-64 bg-white rounded-xl shadow-lg border border-gray-200 z-[99999]">
                 <div className="p-4 border-b border-gray-100 flex items-center justify-between">
                   <h3 className="font-semibold text-black">Menu</h3>
                   <button 
@@ -71,7 +62,17 @@ export function Header() {
                     className="w-full flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-50 transition-colors text-left"
                   >
                     <Package className="h-5 w-5 text-[#E9B7C6]" />
-                    <span className="text-gray-700 font-medium">Meus Produtos</span>
+                    <span className="text-gray-700 font-medium">Comprar Produtos</span>
+                  </button>
+                  <button 
+                    onClick={() => {
+                      setCurrentView('alerts');
+                      setShowMobileMenu(false);
+                    }}
+                    className="w-full flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-50 transition-colors text-left"
+                  >
+                    <Bell className="h-5 w-5 text-[#E9B7C6]" />
+                    <span className="text-gray-700 font-medium">Alertas</span>
                   </button>
                   <button 
                     onClick={() => {

@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { User, DayTask, DiaryEntry, Product, CommunityPost } from '../types';
 import { generateDayTasks } from '../data/dayTasks';
 
@@ -24,6 +24,8 @@ interface AppContextType {
   isDayAvailable: (dayNumber: number) => boolean;
   isDayCompleted: (dayNumber: number) => boolean;
   completeOnboarding: (answers: Record<string, string>) => void;
+  verifyEmailForPasswordReset: (email: string) => Promise<boolean>;
+  changePassword: (email: string, newPassword: string) => Promise<boolean>;
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -36,6 +38,43 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const [diaryEntries, setDiaryEntries] = useState<DiaryEntry[]>([]);
   const [products, setProducts] = useState<Product[]>([]);
   const [communityPosts, setCommunityPosts] = useState<CommunityPost[]>([]);
+
+  // Verificar se há uma sessão salva ao carregar a aplicação
+  useEffect(() => {
+    const savedSession = localStorage.getItem('martha_session');
+    if (savedSession) {
+      try {
+        const sessionData = JSON.parse(savedSession);
+        const registeredUsers = JSON.parse(localStorage.getItem('martha_users') || '[]');
+        const user = registeredUsers.find((u: any) => u.id === sessionData.userId);
+        
+        if (user) {
+          const loggedUser: User = {
+            id: user.id,
+            name: user.name,
+            email: user.email,
+            profileImage: user.profileImage || 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face&auto=format',
+            hairType: user.hairType || 'nao-definido',
+            currentDay: user.currentDay || 1,
+            startDate: user.startDate,
+            points: user.points || 0,
+            badges: user.badges || [],
+            completedTasks: user.completedTasks || [],
+            progressPhotos: user.progressPhotos || 0,
+            onboardingCompleted: user.onboardingCompleted || false,
+            onboardingAnswers: user.onboardingAnswers || {}
+          };
+
+          setUser(loggedUser);
+          setIsAuthenticated(true);
+          setDayTasks(generateDayTasks());
+        }
+      } catch (error) {
+        console.error('Erro ao restaurar sessão:', error);
+        localStorage.removeItem('martha_session');
+      }
+    }
+  }, []);
 
   const login = async (email: string, password: string): Promise<boolean> => {
     try {
@@ -66,6 +105,13 @@ export function AppProvider({ children }: { children: ReactNode }) {
         setUser(loggedUser);
         setIsAuthenticated(true);
         setDayTasks(generateDayTasks());
+        
+        // Salvar sessão no localStorage
+        localStorage.setItem('martha_session', JSON.stringify({
+          userId: user.id,
+          loginTime: new Date().toISOString()
+        }));
+        
         return true;
       } else {
         // Credenciais inválidas
@@ -129,6 +175,13 @@ export function AppProvider({ children }: { children: ReactNode }) {
       setUser(userForState);
       setIsAuthenticated(true);
       setDayTasks(generateDayTasks());
+      
+      // Salvar sessão no localStorage
+      localStorage.setItem('martha_session', JSON.stringify({
+        userId: newUser.id,
+        loginTime: new Date().toISOString()
+      }));
+      
       return true;
     } catch (error) {
       console.error('Erro no cadastro:', error);
@@ -140,6 +193,9 @@ export function AppProvider({ children }: { children: ReactNode }) {
     setUser(null);
     setIsAuthenticated(false);
     setCurrentView('dashboard');
+    
+    // Remover sessão do localStorage
+    localStorage.removeItem('martha_session');
   };
 
   const checkAndAwardBadges = (updatedUser: User, updatedDayTasks: DayTask[], updatedPosts?: CommunityPost[]) => {
@@ -397,33 +453,83 @@ export function AppProvider({ children }: { children: ReactNode }) {
     localStorage.setItem('martha_users', JSON.stringify(updatedUsers));
   };
 
+  // Função para verificar se o email existe para recuperação de senha
+  const verifyEmailForPasswordReset = async (email: string): Promise<boolean> => {
+    try {
+      // Simular delay de verificação
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      
+      // Buscar usuários cadastrados no localStorage
+      const registeredUsers = JSON.parse(localStorage.getItem('martha_users') || '[]');
+      
+      // Verificar se existe um usuário com este email
+      const userExists = registeredUsers.some((u: any) => u.email === email);
+      
+      return userExists;
+    } catch (error) {
+      console.error('Erro ao verificar email:', error);
+      return false;
+    }
+  };
+
+  // Função para alterar a senha do usuário
+  const changePassword = async (email: string, newPassword: string): Promise<boolean> => {
+    try {
+      // Simular delay de alteração
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      
+      // Buscar usuários cadastrados no localStorage
+      const registeredUsers = JSON.parse(localStorage.getItem('martha_users') || '[]');
+      
+      // Encontrar o usuário pelo email
+      const userIndex = registeredUsers.findIndex((u: any) => u.email === email);
+      
+      if (userIndex === -1) {
+        return false; // Usuário não encontrado
+      }
+      
+      // Atualizar a senha do usuário
+      registeredUsers[userIndex].password = newPassword;
+      
+      // Salvar de volta no localStorage
+      localStorage.setItem('martha_users', JSON.stringify(registeredUsers));
+      
+      return true;
+    } catch (error) {
+      console.error('Erro ao alterar senha:', error);
+      return false;
+    }
+  };
+
   return (
-    <AppContext.Provider value={{
-      user,
-      isAuthenticated,
-      currentView,
-      dayTasks,
-      diaryEntries,
-      products,
-      communityPosts,
-      login,
-      register,
-      logout,
-      setCurrentView,
-      completeTask,
-      addDiaryEntry,
-      addProduct,
-      addCommunityPost,
-      updateUserProfile,
-      addProgressPhoto,
-      getAvailableDay,
-      isDayAvailable,
-      isDayCompleted,
-      completeOnboarding
-    }}>
-      {children}
-    </AppContext.Provider>
-  );
+      <AppContext.Provider value={{
+        user,
+        isAuthenticated,
+        currentView,
+        dayTasks,
+        diaryEntries,
+        products,
+        communityPosts,
+        login,
+        register,
+        logout,
+        setCurrentView,
+        completeTask,
+        addDiaryEntry,
+        addProduct,
+        addCommunityPost,
+        updateUserProfile,
+        addProgressPhoto,
+        getAvailableDay,
+        isDayAvailable,
+        isDayCompleted,
+        completeOnboarding,
+        verifyEmailForPasswordReset,
+        changePassword
+      }}>
+        {children}
+      </AppContext.Provider>
+    );
 }
 
 export function useApp() {

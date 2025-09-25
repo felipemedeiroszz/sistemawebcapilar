@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { AppProvider, useApp } from './contexts/AppContext';
 import { LoginForm } from './components/Auth/LoginForm';
 import { RegisterForm } from './components/Auth/RegisterForm';
+import { ForgotPasswordFlow } from './components/Auth/ForgotPasswordFlow';
 import { Onboarding } from './components/Onboarding/Onboarding';
 import { Sidebar } from './components/Layout/Sidebar';
 import { Header } from './components/Layout/Header';
@@ -17,13 +18,33 @@ import { MobileNavigation } from './components/Layout/MobileNavigation';
 
 function AuthWrapper() {
   const [isLogin, setIsLogin] = useState(true);
+  const [showForgotPassword, setShowForgotPassword] = useState(false);
+
+  useEffect(() => {
+    const handleShowForgotPassword = () => {
+      setShowForgotPassword(true);
+    };
+
+    window.addEventListener('showForgotPassword', handleShowForgotPassword);
+    
+    return () => {
+      window.removeEventListener('showForgotPassword', handleShowForgotPassword);
+    };
+  }, []);
+
+  const handleBackToLogin = () => {
+    setShowForgotPassword(false);
+    setIsLogin(true);
+  };
 
   return (
     <div 
       className="min-h-screen flex items-center justify-center p-4 bg-cover bg-center bg-no-repeat"
       style={{ backgroundImage: 'url(/fundo.png)' }}
     >
-      {isLogin ? (
+      {showForgotPassword ? (
+        <ForgotPasswordFlow onBackToLogin={handleBackToLogin} />
+      ) : isLogin ? (
         <LoginForm onToggleMode={() => setIsLogin(false)} />
       ) : (
         <RegisterForm onToggleMode={() => setIsLogin(true)} />

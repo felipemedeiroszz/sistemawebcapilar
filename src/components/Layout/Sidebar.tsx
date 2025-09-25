@@ -8,7 +8,8 @@ import {
   LogOut,
   ShoppingBag,
   MessageCircle,
-  Star
+  Star,
+  Bell
 } from 'lucide-react';
 import { useApp } from '../../contexts/AppContext';
 
@@ -16,7 +17,8 @@ const menuItems = [
   { id: 'dashboard', label: 'Dashboard', icon: Home },
   { id: 'calendar', label: 'Calendário', icon: Calendar },
   { id: 'diary', label: 'Diário', icon: BookOpen },
-  { id: 'products', label: 'Meus Produtos', icon: ShoppingBag },
+  { id: 'products', label: 'Comprar Produtos', icon: ShoppingBag },
+  { id: 'alerts', label: 'Alertas', icon: Bell },
   { id: 'achievements', label: 'Conquistas', icon: Trophy },
   { id: 'martha-brust', label: 'Martha Brust', icon: Star },
   { id: 'chat', label: 'Assistente Capilar', icon: MessageCircle },
@@ -30,13 +32,11 @@ export function Sidebar() {
       {/* Logo */}
       <div className="p-6 border-b border-gray-100">
         <div className="flex items-center space-x-3">
-          <div className="w-12 h-12 rounded-xl flex items-center justify-center shadow-lg overflow-hidden" style={{ backgroundColor: '#E9B7C6' }}>
-            <img 
-              src="/MARTHA.png" 
-              alt="Martha Brust Logo" 
-              className="w-10 h-10 object-contain"
-            />
-          </div>
+          <img 
+            src="/MARTHA.png" 
+            alt="Martha Brust Logo" 
+            className="w-12 h-12 object-contain"
+          />
           <div>
             <h1 className="font-bold text-black text-lg">Martha Brust</h1>
             <p className="text-sm text-gray-500">Acompanhamento Capilar</p>
