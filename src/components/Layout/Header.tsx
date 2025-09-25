@@ -45,7 +45,14 @@ export function Header() {
             </button>
             
             {showMobileMenu && (
-              <div className="absolute right-0 mt-2 w-64 bg-white rounded-xl shadow-lg border border-gray-200 z-50">
+              <>
+                {/* Overlay */}
+                <div 
+                  className="fixed inset-0 bg-black/20 z-[9998]"
+                  onClick={() => setShowMobileMenu(false)}
+                />
+                {/* Menu */}
+                <div className="absolute right-0 mt-2 w-64 bg-white rounded-xl shadow-lg border border-gray-200 z-[9999]">
                 <div className="p-4 border-b border-gray-100 flex items-center justify-between">
                   <h3 className="font-semibold text-black">Menu</h3>
                   <button 
@@ -88,6 +95,7 @@ export function Header() {
                   </button>
                 </div>
               </div>
+              </>
             )}
           </div>
 
