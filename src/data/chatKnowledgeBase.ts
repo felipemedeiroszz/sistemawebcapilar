@@ -137,7 +137,7 @@ export const faqs: FAQ[] = [
   },
   {
     question: "Oi!",
-    answer: "Oi, linda! 💖 Que bom te ver por aqui! Sou a Marthinha e estou aqui para te ajudar com tudo sobre seu tratamento capilar. O que você gostaria de saber hoje?",
+    answer: "Oi, linda! 💖 Que bom te ver por aqui! Sou a Martha e estou aqui para te ajudar com tudo sobre seu tratamento capilar. O que você gostaria de saber hoje?",
     keywords: ["oi", "olá", "hey"]
   },
   {
@@ -146,7 +146,7 @@ export const faqs: FAQ[] = [
     keywords: ["oii", "oiii"]
   },
   {
-    question: "Marthinha!",
+    question: "Martha!",
     answer: "Oi, amor! 💕 Aqui estou eu! Pronta para te ajudar com qualquer dúvida sobre seu tratamento capilar. O que você precisa saber hoje?",
     keywords: ["marthinha", "martha", "chamando"]
   },
@@ -284,8 +284,8 @@ export const faqs: FAQ[] = [
 ];
 
 export const assistantPersonality = {
-  name: "Marthinha",
-  greeting: "Olá! Eu sou a Marthinha, sua assistente especializada no tratamento capilar Martha Brust! 💫 Estou aqui para te ajudar com qualquer dúvida sobre o seu programa de 30 dias. Como posso te ajudar hoje?",
+  name: "Martha",
+  greeting: "Olá! Eu sou a Martha, sua assistente especializada no tratamento capilar Martha Brust! 💫 Estou aqui para te ajudar com qualquer dúvida sobre o seu programa de 30 dias. Como posso te ajudar hoje?",
   defaultResponses: {
     outOfScope: [
       "Minha especialidade é o tratamento capilar de 30 dias Martha Brust. O que você gostaria de saber sobre ele? 😊",

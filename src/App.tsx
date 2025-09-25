@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { AppProvider, useApp } from './contexts/AppContext';
 import { LoginForm } from './components/Auth/LoginForm';
 import { RegisterForm } from './components/Auth/RegisterForm';
+import { Onboarding } from './components/Onboarding/Onboarding';
 import { Sidebar } from './components/Layout/Sidebar';
 import { Header } from './components/Layout/Header';
 import { Dashboard } from './components/Dashboard/Dashboard';
@@ -72,9 +73,20 @@ function MainApp() {
 }
 
 function AppContent() {
-  const { isAuthenticated } = useApp();
+  const { isAuthenticated, user, completeOnboarding } = useApp();
 
-  return isAuthenticated ? <MainApp /> : <AuthWrapper />;
+  // Se não está autenticado, mostra tela de login
+  if (!isAuthenticated) {
+    return <AuthWrapper />;
+  }
+
+  // Se está autenticado mas não completou o onboarding, mostra questionário
+  if (user && !user.onboardingCompleted) {
+    return <Onboarding onComplete={completeOnboarding} />;
+  }
+
+  // Se está autenticado e completou onboarding, mostra app principal
+  return <MainApp />;
 }
 
 function App() {

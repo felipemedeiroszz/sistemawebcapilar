@@ -27,7 +27,7 @@ export const Chat: React.FC = () => {
     // Mensagem de boas-vindas
     const welcomeMessage: Message = {
       id: '1',
-      text: 'Olá! Eu sou a Marthinha, sua assistente especializada no tratamento capilar Martha Brust! 💫 Estou aqui para te ajudar com qualquer dúvida sobre o seu programa de 30 dias. Como posso te ajudar hoje?',
+      text: 'Olá! Eu sou a Martha, sua assistente especializada no tratamento capilar Martha Brust! 💫 Estou aqui para te ajudar com qualquer dúvida sobre o seu programa de 30 dias. Como posso te ajudar hoje?',
       sender: 'assistant',
       timestamp: new Date()
     };
@@ -87,14 +87,14 @@ export const Chat: React.FC = () => {
             <div className="w-12 h-12 rounded-full overflow-hidden bg-gradient-to-r from-pink-400 via-purple-400 to-indigo-400 flex items-center justify-center shadow-lg">
               <img 
                 src="/fotochat.png" 
-                alt="Marthinha" 
+                alt="Martha" 
                 className="w-full h-full object-cover"
               />
             </div>
             <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-400 rounded-full border-2 border-white"></div>
           </div>
           <div>
-            <h1 className="text-xl font-bold bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">Marthinha</h1>
+            <h1 className="text-xl font-bold bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">Martha</h1>
             <p className="text-sm text-gray-600 font-medium">✨ Sua Assistente Capilar Especializada</p>
           </div>
         </div>

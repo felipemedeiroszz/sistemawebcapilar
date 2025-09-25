@@ -23,6 +23,7 @@ interface AppContextType {
   getAvailableDay: () => number;
   isDayAvailable: (dayNumber: number) => boolean;
   isDayCompleted: (dayNumber: number) => boolean;
+  completeOnboarding: (answers: Record<string, string>) => void;
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -57,7 +58,9 @@ export function AppProvider({ children }: { children: ReactNode }) {
           points: user.points || 0,
           badges: user.badges || [],
           completedTasks: user.completedTasks || [],
-          progressPhotos: user.progressPhotos || 0
+          progressPhotos: user.progressPhotos || 0,
+          onboardingCompleted: user.onboardingCompleted || false,
+          onboardingAnswers: user.onboardingAnswers || {}
         };
 
         setUser(loggedUser);
@@ -98,7 +101,9 @@ export function AppProvider({ children }: { children: ReactNode }) {
         points: 0,
         badges: [],
         completedTasks: [],
-        progressPhotos: 0
+        progressPhotos: 0,
+        onboardingCompleted: false,
+        onboardingAnswers: {}
       };
 
       // Salvar no localStorage
@@ -116,7 +121,9 @@ export function AppProvider({ children }: { children: ReactNode }) {
         points: newUser.points,
         badges: newUser.badges,
         completedTasks: newUser.completedTasks,
-        progressPhotos: newUser.progressPhotos
+        progressPhotos: newUser.progressPhotos,
+        onboardingCompleted: newUser.onboardingCompleted,
+        onboardingAnswers: newUser.onboardingAnswers
       };
 
       setUser(userForState);
@@ -363,6 +370,33 @@ export function AppProvider({ children }: { children: ReactNode }) {
     return dayTask.tasks.every(task => task.completed);
   };
 
+  // Função para completar o onboarding
+  const completeOnboarding = (answers: Record<string, string>) => {
+    if (!user) return;
+
+    const updatedUser: User = {
+      ...user,
+      onboardingCompleted: true,
+      onboardingAnswers: {
+        hairType: answers.hairType,
+        hairNeeds: answers.hairNeeds,
+        washFrequency: answers.washFrequency,
+        hairLength: answers.hairLength,
+        hairDamage: answers.hairDamage,
+        experience: answers.experience
+      }
+    };
+
+    setUser(updatedUser);
+
+    // Atualizar no localStorage
+    const registeredUsers = JSON.parse(localStorage.getItem('martha_users') || '[]');
+    const updatedUsers = registeredUsers.map((u: any) => 
+      u.id === user.id ? { ...u, onboardingCompleted: true, onboardingAnswers: updatedUser.onboardingAnswers } : u
+    );
+    localStorage.setItem('martha_users', JSON.stringify(updatedUsers));
+  };
+
   return (
     <AppContext.Provider value={{
       user,
@@ -384,7 +418,8 @@ export function AppProvider({ children }: { children: ReactNode }) {
       addProgressPhoto,
       getAvailableDay,
       isDayAvailable,
-      isDayCompleted
+      isDayCompleted,
+      completeOnboarding
     }}>
       {children}
     </AppContext.Provider>

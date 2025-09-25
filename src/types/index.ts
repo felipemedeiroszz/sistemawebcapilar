@@ -10,6 +10,15 @@ export interface User {
   badges: string[];
   completedTasks: string[];
   progressPhotos: number;
+  onboardingCompleted?: boolean;
+  onboardingAnswers?: {
+    hairType?: string;
+    hairNeeds?: string;
+    washFrequency?: string;
+    hairLength?: string;
+    hairDamage?: string;
+    experience?: string;
+  };
 }
 
 export interface DayTask {
