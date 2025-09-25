@@ -16,10 +16,6 @@ export function Dashboard() {
   const totalTasks = dayTasks.reduce((acc, day) => acc + day.tasks.length, 0);
   const progressPercentage = totalTasks > 0 ? (completedTasks / totalTasks) * 100 : 0;
 
-  const currentDayData = dayTasks.find(day => day.day === user.currentDay);
-  const todayCompletedTasks = currentDayData?.tasks.filter(task => task.completed).length || 0;
-  const todayTotalTasks = currentDayData?.tasks.length || 0;
-
   return (
     <div className="space-y-8 fade-in">
       {/* Cabeçalho de Boas-vindas */}
@@ -43,22 +39,21 @@ export function Dashboard() {
           icon={Star}
         />
         <StatsCard
-          title="Badges"
+          title="Conquistas"
           value={user.badges.length}
           icon={Trophy}
         />
         <StatsCard
-          title="Tarefas Hoje"
-          value={`${todayCompletedTasks}/${todayTotalTasks}`}
+          title="Progresso"
+          value={`${Math.round(progressPercentage)}%`}
           icon={Target}
         />
       </div>
 
       {/* Progresso Principal */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        {/* Círculo de Progresso */}
-        <div className="bg-white p-6 md:p-8 rounded-3xl shadow-lg border border-gray-50 card-hover">
-          <h2 className="text-xl font-bold text-black mb-6 flex items-center">
+      <div className="flex justify-center">
+        <div className="bg-white p-6 md:p-8 rounded-3xl shadow-lg border border-gray-50 card-hover max-w-md w-full">
+          <h2 className="text-xl font-bold text-black mb-6 flex items-center justify-center">
             <div className="w-2 h-6 rounded-full mr-3 pulse-slow" style={{ backgroundColor: '#E9B7C6' }}></div>
             Progresso Geral
           </h2>
@@ -70,45 +65,6 @@ export function Dashboard() {
               {completedTasks} de {totalTasks} tarefas concluídas
             </p>
           </div>
-        </div>
-
-        {/* Tarefas de Hoje */}
-        <div className="bg-white p-6 md:p-8 rounded-3xl shadow-lg border border-gray-50 card-hover">
-          <h2 className="text-xl font-bold text-black mb-6 flex items-center">
-            <div className="w-2 h-6 rounded-full mr-3 pulse-slow" style={{ backgroundColor: '#E9B7C6' }}></div>
-            Tarefas de Hoje
-          </h2>
-          {currentDayData ? (
-            <div className="space-y-4">
-              <div className="p-4 rounded-2xl border border-[#E9B7C6]/20" style={{ backgroundColor: 'rgba(233, 183, 198, 0.1)' }}>
-                <h3 className="font-semibold text-black mb-2">{currentDayData.title}</h3>
-                <p className="text-sm text-gray-600 mb-3">{currentDayData.tip}</p>
-              </div>
-              <div className="space-y-2">
-                {currentDayData.tasks.map(task => (
-                  <div key={task.id} className="flex items-center space-x-3">
-                    <input
-                      type="checkbox"
-                      checked={task.completed}
-                      onChange={() => {}}
-                      className="rounded-md text-[#E9B7C6] focus:ring-[#E9B7C6] w-5 h-5"
-                    />
-                    <span className={`${task.completed ? 'line-through text-gray-500' : 'text-black'}`}>
-                      {task.description}
-                    </span>
-                  </div>
-                ))}
-              </div>
-              <button
-                onClick={() => setCurrentView('calendar')}
-                className="w-full mt-4 button-secondary"
-              >
-                Ver Detalhes
-              </button>
-            </div>
-          ) : (
-            <p className="text-gray-600">Nenhuma tarefa para hoje</p>
-          )}
         </div>
       </div>
 

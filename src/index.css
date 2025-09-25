@@ -98,3 +98,12 @@
     transform: translateY(0);
   }
 }
+
+/* Garantir que o menu mobile fique sempre fixo */
+.mobile-navigation-fixed {
+  position: fixed !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  z-index: 9999 !important;
+}

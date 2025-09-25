@@ -1,9 +1,9 @@
 import React, { useState, useRef } from 'react';
 import { useApp } from '../../contexts/AppContext';
-import { User, Camera, Edit2, Lock, Save, X, Eye, EyeOff } from 'lucide-react';
+import { User, Camera, Edit2, Lock, Save, X, Eye, EyeOff, LogOut } from 'lucide-react';
 
 const Profile: React.FC = () => {
-  const { user, updateUserProfile } = useApp();
+  const { user, updateUserProfile, logout } = useApp();
   const [isEditingName, setIsEditingName] = useState(false);
   const [isChangingPassword, setIsChangingPassword] = useState(false);
   const [newName, setNewName] = useState(user?.name || '');
@@ -322,6 +322,17 @@ const Profile: React.FC = () => {
                 <p className="text-lg text-gray-800">Dia {user.currentDay}</p>
               </div>
             </div>
+          </div>
+
+          {/* Mobile Logout Button */}
+          <div className="mt-8 pt-8 border-t border-gray-200 md:hidden">
+            <button
+              onClick={logout}
+              className="w-full flex items-center justify-center gap-3 bg-red-500 hover:bg-red-600 text-white py-3 px-4 rounded-lg font-medium transition-colors"
+            >
+              <LogOut size={20} />
+              Sair
+            </button>
           </div>
         </div>
       </div>

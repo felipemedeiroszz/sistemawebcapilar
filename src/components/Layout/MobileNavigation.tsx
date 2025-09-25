@@ -5,7 +5,10 @@ import {
   BookOpen,
   User,
   MessageCircle,
-  Bell
+  Bell,
+  Package,
+  Trophy,
+  Sparkles
 } from 'lucide-react';
 import { useApp } from '../../contexts/AppContext';
 
@@ -13,7 +16,10 @@ const mobileMenuItems = [
   { id: 'dashboard', label: 'Início', icon: Home },
   { id: 'calendar', label: 'Calendário', icon: Calendar },
   { id: 'diary', label: 'Diário', icon: BookOpen },
+  { id: 'products', label: 'Produtos', icon: Package },
   { id: 'alerts', label: 'Alertas', icon: Bell },
+  { id: 'achievements', label: 'Conquistas', icon: Trophy },
+  { id: 'martha-brust', label: 'Martha', icon: Sparkles },
   { id: 'chat', label: 'Chat', icon: MessageCircle },
 ];
 
@@ -21,8 +27,8 @@ export function MobileNavigation() {
   const { currentView, setCurrentView } = useApp();
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-lg z-50 md:hidden">
-      <div className="grid grid-cols-5 gap-1 p-2">
+    <div className="mobile-navigation-fixed bg-white border-t border-gray-200 shadow-lg md:hidden">
+      <div className="grid grid-cols-4 gap-1 p-2">
         {mobileMenuItems.map((item) => (
           <button
             key={item.id}
