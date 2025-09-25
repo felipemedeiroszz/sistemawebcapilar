@@ -1,0 +1,88 @@
+import React, { useState } from 'react';
+import { AppProvider, useApp } from './contexts/AppContext';
+import { LoginForm } from './components/Auth/LoginForm';
+import { RegisterForm } from './components/Auth/RegisterForm';
+import { Sidebar } from './components/Layout/Sidebar';
+import { Header } from './components/Layout/Header';
+import { Dashboard } from './components/Dashboard/Dashboard';
+import { Calendar } from './components/Calendar/Calendar';
+import { Diary } from './components/Diary/Diary';
+import { Achievements } from './components/Achievements/Achievements';
+import { Products } from './components/Products/Products';
+import Profile from './components/Profile/Profile';
+import { Chat } from './components/Chat/Chat';
+import { MarthaBrust } from './components/MarthaBrust/MarthaBrust';
+import { MobileNavigation } from './components/Layout/MobileNavigation';
+
+function AuthWrapper() {
+  const [isLogin, setIsLogin] = useState(true);
+
+  return (
+    <div 
+      className="min-h-screen flex items-center justify-center p-4 bg-cover bg-center bg-no-repeat"
+      style={{ backgroundImage: 'url(/fundo.png)' }}
+    >
+      {isLogin ? (
+        <LoginForm onToggleMode={() => setIsLogin(false)} />
+      ) : (
+        <RegisterForm onToggleMode={() => setIsLogin(true)} />
+      )}
+    </div>
+  );
+}
+
+function MainApp() {
+  const { currentView } = useApp();
+
+  const renderContent = () => {
+    switch (currentView) {
+      case 'dashboard':
+        return <Dashboard />;
+      case 'calendar':
+        return <Calendar />;
+      case 'diary':
+        return <Diary />;
+      case 'products':
+        return <Products />;
+      case 'achievements':
+        return <Achievements />;
+      case 'profile':
+        return <Profile />;
+      case 'martha-brust':
+        return <MarthaBrust />;
+      case 'chat':
+        return <Chat />;
+      default:
+        return <Dashboard />;
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
+      <Sidebar />
+      <div className="md:ml-64 flex flex-col min-h-screen">
+        <Header />
+        <main className="flex-1 p-4 md:p-8 pb-32 md:pb-8">
+          {renderContent()}
+        </main>
+      </div>
+      <MobileNavigation />
+    </div>
+  );
+}
+
+function AppContent() {
+  const { isAuthenticated } = useApp();
+
+  return isAuthenticated ? <MainApp /> : <AuthWrapper />;
+}
+
+function App() {
+  return (
+    <AppProvider>
+      <AppContent />
+    </AppProvider>
+  );
+}
+
+export default App;
