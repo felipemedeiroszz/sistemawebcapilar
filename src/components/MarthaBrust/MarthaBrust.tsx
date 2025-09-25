@@ -7,10 +7,12 @@ export function MarthaBrust() {
       {/* Hero Section */}
       <div className="bg-gradient-to-br from-[#E9B7C6] via-[#E9B7C6] to-[#E9B7C6]/90 rounded-3xl p-8 text-white shadow-xl">
         <div className="flex flex-col md:flex-row items-center space-y-6 md:space-y-0 md:space-x-8">
-          <div className="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden shadow-lg bg-white/20 flex items-center justify-center">
-            <svg className="w-20 h-20 md:w-24 md:h-24 text-white" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
-            </svg>
+          <div className="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden shadow-lg bg-white/20">
+            <img 
+              src="/martha.jpeg" 
+              alt="Martha Brust" 
+              className="w-full h-full object-cover"
+            />
           </div>
           <div className="text-center md:text-left">
             <h1 className="text-3xl md:text-4xl font-bold mb-2">Martha Brust</h1>
