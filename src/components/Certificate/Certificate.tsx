@@ -53,12 +53,10 @@ const Certificate: React.FC<CertificateProps> = ({ onDownload, downloadEnabled =
 
         <div className="content">
           <h1>CERTIFICADO</h1>
-          <div className="subtitle">CURSO DE TRATAMENTO CAPILAR</div>
+          <div className="subtitle">CRONOGRAMA DE TRATAMENTO CAPILAR</div>
           <div className="name">{userName.toUpperCase()}</div>
           <div className="paragraph">
-            Certificamos que {userName}, após completar com sucesso o curso de Tratamento
-            Capilar, demonstrou habilidades excepcionais e conhecimento profundo neste
-            campo da estética e beleza.
+            Certificamos que {userName}, após completar com sucesso o cronograma de Tratamento Capilar, demonstrou habilidades excepcionais e conhecimento profundo neste campo da estética e beleza.
           </div>
         </div>
 
