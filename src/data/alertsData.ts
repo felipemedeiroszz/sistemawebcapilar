@@ -116,6 +116,123 @@ export const alertsData: Alert[] = [
     icon: '🌙',
     priority: 'alta',
     frequency: 'diario'
+  },
+  {
+    id: '13',
+    title: 'Use touca ou gorro para dormir',
+    description: 'Proteja seu cabelo com uma touca de seda ou cetim durante o sono',
+    category: 'protecao',
+    icon: '🧢',
+    priority: 'media',
+    frequency: 'diario'
+  },
+  {
+    id: '14',
+    title: 'Aplique óleo nas pontas',
+    description: 'Use óleo de coco, argan ou jojoba nas pontas para nutrição extra',
+    category: 'nutricao',
+    icon: '🫒',
+    priority: 'media',
+    frequency: 'diario'
+  },
+  {
+    id: '15',
+    title: 'Evite pentear cabelo molhado',
+    description: 'Desembarace com cuidado usando um pente de dentes largos',
+    category: 'cuidado',
+    icon: '🪮',
+    priority: 'alta',
+    frequency: 'diario'
+  },
+  {
+    id: '16',
+    title: 'Faça cronograma capilar',
+    description: 'Alterne entre hidratação, nutrição e reconstrução semanalmente',
+    category: 'cuidado',
+    icon: '📅',
+    priority: 'alta',
+    frequency: 'semanal'
+  },
+  {
+    id: '17',
+    title: 'Use produtos sem sulfato',
+    description: 'Prefira shampoos e condicionadores livres de sulfato',
+    category: 'higiene',
+    icon: '🚫',
+    priority: 'media',
+    frequency: 'diario'
+  },
+  {
+    id: '18',
+    title: 'Proteja do cloro da piscina',
+    description: 'Molhe o cabelo com água limpa antes de entrar na piscina',
+    category: 'protecao',
+    icon: '🏊‍♀️',
+    priority: 'alta',
+    frequency: 'diario'
+  },
+  {
+    id: '19',
+    title: 'Beba chá de cavalinha',
+    description: 'Consuma chá de cavalinha para fortalecer os fios de dentro para fora',
+    category: 'nutricao',
+    icon: '🍵',
+    priority: 'baixa',
+    frequency: 'diario'
+  },
+  {
+    id: '20',
+    title: 'Evite elásticos com metal',
+    description: 'Use elásticos de tecido ou scrunchies para não quebrar os fios',
+    category: 'protecao',
+    icon: '🎀',
+    priority: 'media',
+    frequency: 'diario'
+  },
+  {
+    id: '21',
+    title: 'Faça umectação noturna',
+    description: 'Aplique óleo vegetal no cabelo antes de dormir uma vez por semana',
+    category: 'hidratacao',
+    icon: '🌛',
+    priority: 'media',
+    frequency: 'semanal'
+  },
+  {
+    id: '22',
+    title: 'Seque com toalha de microfibra',
+    description: 'Use toalha de microfibra ou camiseta de algodão para secar',
+    category: 'cuidado',
+    icon: '🏃‍♀️',
+    priority: 'media',
+    frequency: 'diario'
+  },
+  {
+    id: '23',
+    title: 'Mantenha a escova limpa',
+    description: 'Lave sua escova semanalmente para remover resíduos e oleosidade',
+    category: 'higiene',
+    icon: '🧽',
+    priority: 'media',
+    frequency: 'semanal'
+  },
+  {
+    id: '24',
+    title: 'Use leave-in com proteção UV',
+    description: 'Aplique produtos com fator de proteção solar nos fios',
+    category: 'protecao',
+    icon: '☀️',
+    priority: 'alta',
+    frequency: 'diario'
+  },
+  {
+    id: '25',
+    title: 'Faça massagem com óleo morno',
+    description: 'Aqueça óleo de coco e massageie o couro cabeludo por 10 minutos',
+    category: 'cuidado',
+    icon: '♨️',
+    priority: 'baixa',
+    frequency: 'semanal'
   }
 ];
 

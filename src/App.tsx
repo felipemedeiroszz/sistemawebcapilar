@@ -10,6 +10,7 @@ import { Dashboard } from './components/Dashboard/Dashboard';
 import { Calendar } from './components/Calendar/Calendar';
 import { Diary } from './components/Diary/Diary';
 import { Achievements } from './components/Achievements/Achievements';
+import { Alerts } from './components/Alerts/Alerts';
 import { Products } from './components/Products/Products';
 import Profile from './components/Profile/Profile';
 import { Chat } from './components/Chat/Chat';
@@ -66,6 +67,8 @@ function MainApp() {
         return <Diary />;
       case 'products':
         return <Products />;
+      case 'alerts':
+        return <Alerts />;
       case 'achievements':
         return <Achievements />;
       case 'profile':

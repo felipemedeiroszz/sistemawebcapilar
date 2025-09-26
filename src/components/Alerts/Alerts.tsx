@@ -72,10 +72,19 @@ export function Alerts() {
 
   const getPriorityColor = (priority: string) => {
     switch (priority) {
-      case 'alta': return 'border-l-red-500 bg-red-50';
-      case 'media': return 'border-l-yellow-500 bg-yellow-50';
-      case 'baixa': return 'border-l-green-500 bg-green-50';
-      default: return 'border-l-gray-500 bg-gray-50';
+      case 'alta': return 'border-l-red-500 bg-red-50 shadow-red-100';
+      case 'media': return 'border-l-yellow-500 bg-yellow-50 shadow-yellow-100';
+      case 'baixa': return 'border-l-green-500 bg-green-50 shadow-green-100';
+      default: return 'border-l-gray-500 bg-gray-50 shadow-gray-100';
+    }
+  };
+
+  const getPriorityIcon = (priority: string) => {
+    switch (priority) {
+      case 'alta': return '🔴';
+      case 'media': return '🟡';
+      case 'baixa': return '🟢';
+      default: return '⚪';
     }
   };
 
@@ -226,13 +235,16 @@ export function Alerts() {
 
                       {/* Badges */}
                       <div className="flex flex-col items-end space-y-2">
-                        <span className={`px-3 py-1 rounded-full text-xs font-medium ${
-                          alert.priority === 'alta' ? 'bg-red-100 text-red-800' :
-                          alert.priority === 'media' ? 'bg-yellow-100 text-yellow-800' :
-                          'bg-green-100 text-green-800'
-                        }`}>
-                          {alert.priority.charAt(0).toUpperCase() + alert.priority.slice(1)}
-                        </span>
+                        <div className="flex items-center space-x-1">
+                          <span className="text-sm">{getPriorityIcon(alert.priority)}</span>
+                          <span className={`px-3 py-1 rounded-full text-xs font-medium ${
+                            alert.priority === 'alta' ? 'bg-red-100 text-red-800' :
+                            alert.priority === 'media' ? 'bg-yellow-100 text-yellow-800' :
+                            'bg-green-100 text-green-800'
+                          }`}>
+                            {alert.priority.charAt(0).toUpperCase() + alert.priority.slice(1)}
+                          </span>
+                        </div>
                         
                         {isCompleted && alertStatus[alert.id]?.completedAt && (
                           <span className="text-xs text-green-600 font-medium">
