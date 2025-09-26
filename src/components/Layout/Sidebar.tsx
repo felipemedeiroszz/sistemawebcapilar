@@ -9,7 +9,8 @@ import {
   ShoppingBag,
   MessageCircle,
   Star,
-  Bell
+  Bell,
+  Award
 } from 'lucide-react';
 import { useApp } from '../../contexts/AppContext';
 
@@ -20,6 +21,7 @@ const menuItems = [
   { id: 'products', label: 'Comprar Produtos', icon: ShoppingBag },
   { id: 'alerts', label: 'Alertas', icon: Bell },
   { id: 'achievements', label: 'Conquistas', icon: Trophy },
+  { id: 'certificate', label: 'Meu Certificado', icon: Award },
   { id: 'martha-brust', label: 'Martha Brust', icon: Star },
   { id: 'chat', label: 'Assistente Capilar', icon: MessageCircle },
 ];

@@ -10,7 +10,8 @@ import { Dashboard } from './components/Dashboard/Dashboard';
 import { Calendar } from './components/Calendar/Calendar';
 import { Diary } from './components/Diary/Diary';
 import { Achievements } from './components/Achievements/Achievements';
-import { Alerts } from './components/Alerts/Alerts';
+import { Alerts } from './components/Alerts';
+import CertificatePage from './components/Certificate/CertificatePage';
 import { Products } from './components/Products/Products';
 import Profile from './components/Profile/Profile';
 import { Chat } from './components/Chat/Chat';
@@ -65,10 +66,12 @@ function MainApp() {
         return <Calendar />;
       case 'diary':
         return <Diary />;
-      case 'products':
-        return <Products />;
       case 'alerts':
         return <Alerts />;
+      case 'certificate':
+        return <CertificatePage />;
+      case 'products':
+        return <Products />;
       case 'achievements':
         return <Achievements />;
       case 'profile':

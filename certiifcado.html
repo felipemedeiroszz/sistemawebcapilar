@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Certificado</title>
+  <!-- Tipografias aproximadas ao layout: Playfair Display (títulos) e Lora (texto) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=Playfair+Display:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --pink:#e9b8c5; /* rosa claro do layout */
+      --text:#222;
+      --muted:#444;
+      --line:#111;
+    }
+    *{box-sizing:border-box}
+    html,body{
+      height:100%;
+      margin:0;
+      background:#f6f6f6;
+      color:var(--text);
+    }
+    /* Área do certificado com proporção A4 paisagem */
+    .page{
+      width: 297mm;
+      height: 210mm;
+      max-width: calc(100vw - 24px);
+      max-height: calc(100vh - 24px);
+      aspect-ratio: 297 / 210;
+      background:#fff;
+      margin:12px auto;
+      position:relative;
+      box-shadow: 0 12px 40px rgba(0,0,0,.15);
+      overflow:hidden;
+    }
+
+    /* Moldura de cantos rosados (traços) */
+    .corner{position:absolute; width:70px; height:70px;}
+    .corner:before,.corner:after{content:""; position:absolute; background:var(--pink);}
+    /* canto superior esquerdo */
+    .c-tl{top:24px; left:24px}
+    .c-tl:before{top:0; left:0; width:72px; height:4px; border-radius:3px}
+    .c-tl:after{top:0; left:0; width:4px; height:72px; border-radius:3px}
+    /* canto superior direito */
+    .c-tr{top:24px; right:24px}
+    .c-tr:before{top:0; right:0; width:72px; height:4px; border-radius:3px}
+    .c-tr:after{top:0; right:0; width:4px; height:72px; border-radius:3px}
+    /* canto inferior esquerdo */
+    .c-bl{bottom:24px; left:24px}
+    .c-bl:before{bottom:0; left:0; width:4px; height:72px; border-radius:3px}
+    .c-bl:after{bottom:0; left:0; width:72px; height:4px; border-radius:3px}
+    /* canto inferior direito */
+    .c-br{bottom:24px; right:24px}
+    .c-br:before{bottom:0; right:0; width:72px; height:4px; border-radius:3px}
+    .c-br:after{bottom:0; right:0; width:4px; height:72px; border-radius:3px}
+
+    /* Linhas pretas verticais laterais e linha superior central */
+    .side-line{position:absolute; top:100px; bottom:100px; width:3px; background:var(--line); border-radius:3px}
+    .side-left{left:48px}
+    .side-right{right:48px}
+    .top-line{position:absolute; top:56px; left:16%; right:16%; height:3px; background:var(--line); border-radius:3px}
+    .bottom-thin{position:absolute; bottom:56px; left:16%; right:16%; height:3px; background:var(--line); opacity:.7; border-radius:3px}
+
+    /* Ícone superior (qualidade.png) */
+    .medal{
+      position:absolute; top:70px; left:50%; transform:translateX(-50%);
+      width:72px; height:72px; display:block; object-fit:contain;
+    }
+
+    /* Conteúdo central */
+    .content{position:absolute; left:0; right:0; top:150px; bottom:220px; display:flex; flex-direction:column; align-items:center; justify-content:flex-start; gap:14px; padding:0 96px}
+
+    h1{
+      font-family:"Playfair Display", serif;
+      font-weight:700;
+      font-size:76px; /* reduzido para não encostar no ícone */
+      letter-spacing:.05em;
+      margin:0 0 6px 0;
+    }
+
+    .subtitle{
+      font-family:"Lora", serif;
+      text-transform:uppercase;
+      letter-spacing:.35em;
+      color:var(--pink);
+      font-weight:600;
+      margin-top:0;
+      margin-bottom:6px;
+    }
+
+    .name{
+      font-family:"Playfair Display", serif;
+      font-weight:700;
+      font-size:86px; /* reduzido */
+      margin:8px 0 16px 0;
+      text-shadow: 0 4px 0 rgba(0,0,0,.08);
+    }
+
+    .paragraph{
+      font-family:"Lora", serif;
+      font-style:italic;
+      color:#555;
+      text-align:center;
+      max-width:820px;
+      line-height:1.6;
+      margin-top:8px;
+    }
+
+    /* Área de assinaturas */
+    .signatures{position:absolute; left:96px; right:96px; bottom:110px; display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:end}
+
+    .sig{
+      text-align:center;
+    }
+    .sig .line{height:2px; background:#b7b7b7; margin:0 auto 10px auto; max-width:360px}
+    .sig .who{font-family:"Playfair Display", serif; font-weight:700; letter-spacing:.25em; color:var(--pink); font-size:20px}
+    .sig .role{font-family:"Lora", serif; color:#777; font-size:14px}
+
+    /* Assinatura desenhada no lado esquerdo (traço simples para compor) */
+    .scribble{width:160px; height:68px; margin:0 auto -4px auto; object-fit:contain; display:block}
+
+    /* Pequena linha fina acima do bloco de assinaturas esquerdo */
+    .sig-left .line{max-width:420px}
+
+    /* Responsividade de visualização (não afeta impressão) */
+    @media (max-width: 900px){
+      h1{font-size:56px}
+      .name{font-size:68px}
+      .content{padding:0 56px; top:140px; bottom:240px}
+      .signatures{left:56px; right:56px; bottom:88px}
+    }
+
+    /* Estilos de impressão */
+    @page{ size: A4 landscape; margin: 0; }
+    @media print{
+      html,body{background:#fff}
+      .page{box-shadow:none; margin:0}
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <!-- cantos rosados -->
+    <div class="corner c-tl"></div>
+    <div class="corner c-tr"></div>
+    <div class="corner c-bl"></div>
+    <div class="corner c-br"></div>
+
+    <!-- linhas pretas -->
+    <div class="side-line side-left"></div>
+    <div class="side-line side-right"></div>
+    <div class="top-line"></div>
+
+    <!-- ícone superior -->
+    <img class="medal" src="public\qualidade.png" alt="Ícone de qualidade">
+
+    <div class="content">
+      <h1>CERTIFICADO</h1>
+      <div class="subtitle">CURSO DE TRATAMENTO CAPILAR</div>
+      <div class="name" id="nome">{nome}</div>
+      <div class="paragraph">
+        Certificamos que {nome}, após completar com sucesso o curso de Tratamento
+        Capilar, demonstrou habilidades excepcionais e conhecimento profundo neste
+        campo da estética e beleza.
+      </div>
+    </div>
+
+    <div class="signatures">
+      <div class="sig sig-left">
+        <img class="scribble" src="public\assinatura.png" alt="Assinatura de Martha Brust">
+        <div class="line"></div>
+        <div class="who">MARTHA BRUST</div>
+        <div class="role">Profissional em Tratamento Capilar</div>
+      </div>
+      <div class="sig sig-right">
+        <div class="line" style="max-width:420px"></div>
+        <div class="who">{NOME}</div>
+        <div class="role">Aluna comprovada</div>
+      </div>
+    </div>
+
+    <div class="bottom-thin"></div>
+  </div>
+
+  <script>
+    // Permite preencher o nome via query string: ?nome=Fulana%20da%20Silva
+    (function(){
+      const params = new URLSearchParams(location.search);
+      const nome = params.get('nome');
+      if (nome){
+        document.querySelectorAll('#nome, .paragraph')
+          .forEach(el => el.innerHTML = el.innerHTML.replaceAll('{nome}', nome));
+        document.querySelectorAll('.who').forEach(el => {
+          if(el.textContent.trim() === '{NOME}') el.textContent = nome.toUpperCase();
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
