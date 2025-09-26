@@ -27,7 +27,7 @@ export const Chat: React.FC = () => {
     // Mensagem de boas-vindas
     const welcomeMessage: Message = {
       id: '1',
-      text: 'Olá! Eu sou a Martha, sua assistente especializada no tratamento capilar Martha Brust! 💫 Estou aqui para te ajudar com qualquer dúvida sobre o seu programa de 30 dias. Como posso te ajudar hoje?',
+      text: 'Olá! Eu sou a Martha, sua educadora em cabelos especializada no tratamento capilar Martha Brust! 💫 Estou aqui para te ajudar com qualquer dúvida sobre o seu programa de 30 dias. Como posso te ajudar hoje?',
       sender: 'assistant',
       timestamp: new Date()
     };
@@ -95,7 +95,7 @@ export const Chat: React.FC = () => {
           </div>
           <div>
             <h1 className="text-xl font-bold bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">Martha</h1>
-            <p className="text-sm text-gray-600 font-medium">✨ Sua Assistente Capilar Especializada</p>
+            <p className="text-sm text-gray-600 font-medium">✨ Sua Educadora em Cabelos Especializada</p>
           </div>
         </div>
       </div>

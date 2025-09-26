@@ -75,6 +75,50 @@
   overflow: hidden;
 }
 
+/* Responsividade mobile - ocultar certificado */
+@media (max-width: 768px) {
+  .certificate-container {
+    padding: 16px;
+    background: #f6f6f6;
+    min-height: calc(100vh - 60px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .certificate-header {
+    margin-bottom: 0;
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+    padding: 30px 20px;
+  }
+  
+  .certificate-header h2 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+  }
+  
+  .certificate-header p {
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 25px;
+  }
+  
+  .download-btn {
+    font-size: 1.1rem;
+    padding: 15px 30px;
+    width: 100%;
+    max-width: 300px;
+  }
+  
+  .certificate-page {
+    display: none; /* Oculta o certificado no mobile */
+  }
+}
+
+
+
 /* Moldura de cantos rosados */
 .corner {
   position: absolute;
@@ -353,6 +397,8 @@
     bottom: 88px;
   }
 }
+
+
 
 /* Estilos de impressão */
 @page {

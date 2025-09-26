@@ -1,4 +1,5 @@
 import React from 'react';
+import { Award } from 'lucide-react';
 import { useApp } from '../../contexts/AppContext';
 
 export function Header() {
@@ -24,7 +25,16 @@ export function Header() {
 
 
         <div className="flex items-center space-x-4">
-
+          {/* Mobile Certificate Icon */}
+          {user && (
+            <button 
+              onClick={() => setCurrentView('certificate')}
+              className="w-10 h-10 rounded-xl flex items-center justify-center shadow-md md:hidden hover:scale-105 transition-all duration-200"
+              style={{ backgroundColor: '#E9B7C6' }}
+            >
+              <Award className="h-5 w-5 text-white" />
+            </button>
+          )}
 
           {user && (
             <div className="flex items-center space-x-3 pl-4 border-l border-gray-100 hidden md:flex">

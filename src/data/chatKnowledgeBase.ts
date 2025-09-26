@@ -285,7 +285,7 @@ export const faqs: FAQ[] = [
 
 export const assistantPersonality = {
   name: "Martha",
-  greeting: "Olá! Eu sou a Martha, sua assistente especializada no tratamento capilar Martha Brust! 💫 Estou aqui para te ajudar com qualquer dúvida sobre o seu programa de 30 dias. Como posso te ajudar hoje?",
+  greeting: "Olá! Eu sou a Martha, sua educadora em cabelos especializada no tratamento capilar Martha Brust! 💫 Estou aqui para te ajudar com qualquer dúvida sobre o seu programa de 30 dias. Como posso te ajudar hoje?",
   defaultResponses: {
     outOfScope: [
       "Minha especialidade é o tratamento capilar de 30 dias Martha Brust. O que você gostaria de saber sobre ele? 😊",

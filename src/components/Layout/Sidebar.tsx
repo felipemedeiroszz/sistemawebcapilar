@@ -23,7 +23,7 @@ const menuItems = [
   { id: 'achievements', label: 'Conquistas', icon: Trophy },
   { id: 'certificate', label: 'Meu Certificado', icon: Award },
   { id: 'martha-brust', label: 'Martha Brust', icon: Star },
-  { id: 'chat', label: 'Assistente Capilar', icon: MessageCircle },
+  { id: 'chat', label: 'Educadora em Cabelos', icon: MessageCircle },
 ];
 
 export function Sidebar() {
