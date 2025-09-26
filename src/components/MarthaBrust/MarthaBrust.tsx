@@ -33,18 +33,13 @@ export function MarthaBrust() {
           </h2>
           <div className="space-y-4 text-gray-700">
             <p>
-              Martha Brust é uma renomada especialista em cuidados capilares com mais de 15 anos de experiência 
-              no mercado de beleza. Formada em Tricologia e especializada em tratamentos naturais, ela dedica 
-              sua carreira a ajudar pessoas a descobrirem a beleza natural de seus cabelos.
+              Martha Brust é uma renomada especialista em cuidados capilares, com mais de 15 anos de experiência no mercado da beleza. Iniciou sua carreira no Brasil e, após anos de dedicação, formou-se como Cosmetóloga nos Estados Unidos, ampliando sua atuação para o cenário internacional e levando seu conhecimento para transformar vidas através da beleza.
             </p>
             <p>
-              Sua abordagem única combina técnicas tradicionais com inovações modernas, sempre priorizando 
-              a saúde capilar e o bem-estar de seus clientes. Martha acredita que cada cabelo é único e 
-              merece um cuidado personalizado.
+            Formada em Tricologia e especializada em tratamentos naturais, Martha dedica sua carreira a ajudar pessoas a redescobrirem e valorizarem a beleza natural de seus cabelos. Sua abordagem única une técnicas tradicionais a inovações modernas, sempre priorizando a saúde dos fios e o bem-estar de cada cliente.
             </p>
             <p>
-              Através de seus tratamentos e produtos, ela já transformou a vida de milhares de pessoas, 
-              devolvendo autoestima e confiança através de cabelos saudáveis e bonitos.
+              Com a crença de que cada cabelo é único e merece um cuidado personalizado, Martha já transformou a vida de milhares de pessoas por meio de seus métodos exclusivos, produtos e tratamentos. Seu trabalho lhe garantiu reconhecimento nacional e internacional como referência em cabelos saudáveis, bonitos e cheios de vida.
             </p>
           </div>
         </div>
