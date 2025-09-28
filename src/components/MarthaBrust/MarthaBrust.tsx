@@ -99,7 +99,7 @@ export function MarthaBrust() {
           </a>
           
           <a 
-            href="https://facebook.com/marthabrust" 
+            href="https://www.facebook.com/thata.silva.50951101?mibextid=LQQJ4d&rdid=F6lolXDqd2pL1ZLz&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2FPqS2cVbETLe2qtED%2F%3Fmibextid%3DLQQJ4d#" 
             target="_blank" 
             rel="noopener noreferrer"
             className="flex items-center space-x-3 p-4 rounded-xl border-2 border-gray-100 hover:border-blue-300 hover:bg-blue-50 transition-all duration-200 hover:shadow-md group"
